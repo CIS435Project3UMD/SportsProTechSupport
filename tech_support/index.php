@@ -1,4 +1,13 @@
 <?php include 'view/header.php'; ?>
+
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- <title>Page Title</title> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
 <main>
     <nav>
         
@@ -23,5 +32,8 @@
     </ul>
     
     </nav>
-</section>
+</main>
+</body>
+</html>
+
 <?php include 'view/footer.php'; ?>
