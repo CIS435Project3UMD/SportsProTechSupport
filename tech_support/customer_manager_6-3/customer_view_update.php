@@ -2,125 +2,111 @@
 
 <!DOCTYPE <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8" />
-	<!-- <title>Page Title</title> -->
-	<link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
-</head>
-<body>
-	<main>
-		<?php
-				try {
-					$dsn = 'mysql:host=localhost;dbname=tech_support';
-					$username = 'ts_user';
-					$password = 'pa55word';
-					$db = new PDO($dsn, $username, $password);
-					echo "<p>You are connected to the database!</p>";
-					
-					$eml = $_POST['thisEml'];
-					$query = 
-					'SELECT 
-						firstName, 
-						lastName, 
-						address, 
-						city, 
-						state, 
-						postalCode, 
-						countryCode, 
-						phone, 
-						email, 
-						password
-					FROM customers WHERE email = :eml';
-					$statement = $db->prepare($query);
-					$statement->bindValue(':eml', $eml);
-					$statement->execute();
-					$products = $statement->fetchAll();
-				}
-				catch (Exception $e) {
-					echo 'Caught exception: ',  $e->getMessage(), "\n";
-				}
-		?>
-		<form id="aligned" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
-
-			<?php foreach ($products as $product): ?>
-
-			<label for="firstNameUpdated">First Name: </label>
-			<input type="text" name="firstNameUpdated" value="<?php echo $product['firstName'] ?>"><br>
-
-			<label for="lastNameUpdated">Last Name: </label>
-			<input type="text" name="lastNameUpdated" value="<?php echo $product['lastName'] ?>"><br>
-
-			<label for="addressUpdated">Address: </label>
-			<input type="text" name="addressUpdated" value="<?php echo $product['address'] ?>"><br>
-
-			<label for="cityUpdated">City: </label>
-			<input type="text" name="cityUpdated" value="<?php echo $product['city'] ?>"><br>
-
-			<label for="stateUpdated">State: </label>
-			<input type="text" name="stateUpdated" value="<?php echo $product['state'] ?>"><br>
-
-			<label for="postalCodeUpdated">Postal Code: </label>
-			<input type="text" name="postalCodeUpdated" value="<?php echo $product['postalCode'] ?>"><br>
-
-			<label for="countryCodeUpdated">Country Code: </label>
-			<input type="text" name="countryCodeUpdated" value="<?php echo $product['countryCode'] ?>"><br>
-
-			<label for="phoneUpdated">Phone: </label>
-			<input type="text" name="phoneUpdated" value="<?php echo $product['phone'] ?>"><br>
-
-			<label for="emailUpdated">Email: </label>
-			<input type="text" name="emailUpdated" value="<?php echo $product['email'] ?>"><br>
-
-			<label for="passwordUpdated">Password: </label>
-			<input type="text" name="passwordUpdated" value="<?php echo $product['password'] ?>"><br>
-
-			<?php endforeach; ?>
-
-			<input type="submit" value="Update Customer">
-
-			<!-- <?php if (!empty($_POST)): ?>
-				<?php 
+	<head>
+		<meta charset="utf-8" />
+		<!-- <title>Page Title</title> -->
+		<link rel="stylesheet" type="text/css" href="../main.css" />
+	</head>
+	<body>
+		<main>
+			<?php if (isset($_POST['customerID'])): ?>
+				<?php
 					try {
-						$dsn = 'mysql:host=localhost;dbname=tech_support';
-						$username = 'ts_user';
-						$password = 'pa55word';
-						$db = new PDO($dsn, $username, $password);
-						// echo "<p>You are connected to the database!</p>";
+						require __DIR__ . "/../model/database.php";
+						require __DIR__ . "/../model/customers_db.php";
+	
+						$customerID =  filter_input(INPUT_POST, 'customerID');
 
-						$fn = $_POST['firstNameUpdated'];
-						$ln = $_POST['lastNameUpdated'];
-						$ad = $_POST['addressUpdated'];
-						$cy = $_POST['cityUpdated'];
-						$st = $_POST['stateUpdated'];
-						$pc = $_POST['postalCodeUpdated'];
-						$cc = $_POST['countryCodeUpdated'];
-						$pn = $_POST['phoneUpdated'];
-						$em = $_POST['emailUpdated'];
-						$ps = $_POST['passwordUpdated'];
+						session_start();
+						$_SESSION["custo_ID"] = $customerID;
 
-						$query = 'UPDATE customers SET 
-						firstName = $fn,
-						lastName = $ln,
-						address = $ad,
-						city = $cy,
-						state = $st,
-						postalCode = $pc,
-						countryCode = $cc,
-						phone = $pn,
-						email = $em,
-						password = $ps
-						WHERE email = :eml';
+						$customer = get_customer_by_id($customerID);
 					}
 					catch (Exception $e) {
 						echo 'Caught exception: ',  $e->getMessage(), "\n";
 					}
 				?>
-			<?php endif; ?> -->
-		</form>
 
-		<a href="/index.php">Search Customers</a>
-	</main>
-</body>
+				<form id="aligned" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
+				<!-- <form id="aligned" action="customer_successful.php"> method="post"> -->
+					<label for="firstNameUpdated">First Name: </label>
+					<input type="text" name="firstNameUpdated" value="<?php echo $customer['firstName'] ?>"><br>
+
+					<label for="lastNameUpdated">Last Name: </label>
+					<input type="text" name="lastNameUpdated" value="<?php echo $customer['lastName'] ?>"><br>
+
+					<label for="addressUpdated">Address: </label>
+					<input type="text" name="addressUpdated" value="<?php echo $customer['address'] ?>"><br>
+
+					<label for="cityUpdated">City: </label>
+					<input type="text" name="cityUpdated" value="<?php echo $customer['city'] ?>"><br>
+
+					<label for="stateUpdated">State: </label>
+					<input type="text" name="stateUpdated" value="<?php echo $customer['state'] ?>"><br>
+
+					<label for="postalCodeUpdated">Postal Code: </label>
+					<input type="text" name="postalCodeUpdated" value="<?php echo $customer['postalCode'] ?>"><br>
+
+					<label for="countryCodeUpdated">Country Code: </label>
+					<input type="text" name="countryCodeUpdated" value="<?php echo $customer['countryCode'] ?>"><br>
+
+					<label for="phoneUpdated">Phone: </label>
+					<input type="text" name="phoneUpdated" value="<?php echo $customer['phone'] ?>"><br>
+
+					<label for="emailUpdated">Email: </label>
+					<input type="text" name="emailUpdated" value="<?php echo $customer['email'] ?>"><br>
+
+					<label for="passwordUpdated">Password: </label>
+					<input type="text" name="passwordUpdated" value="<?php echo $customer['password'] ?>"><br>
+
+					<input type="submit" name= "update" value="Update Customer">
+				</form>
+			<?php endif; ?>
+
+			<?php if(isset($_POST['update'])): ?>
+				<?php
+					try {
+						require __DIR__ . "/../model/database.php";
+						require __DIR__ . "/../model/customers_db.php";
+	
+						$firstname = filter_input(INPUT_POST, 'firstNameUpdated');
+						$lastname = filter_input(INPUT_POST, 'lastNameUpdated');
+						$address = filter_input(INPUT_POST, 'addressUpdated');
+						$city = filter_input(INPUT_POST, 'cityUpdated');
+						$state = filter_input(INPUT_POST, 'stateUpdated');
+						$postalcode = filter_input(INPUT_POST, 'postalCodeUpdated');
+						$countrycode = filter_input(INPUT_POST, 'countryCodeUpdated');
+						$phone = filter_input(INPUT_POST, 'phoneUpdated');
+						$email = filter_input(INPUT_POST, 'emailUpdated');
+						$password = filter_input(INPUT_POST, 'passwordUpdated');
+
+						session_start();
+						$customerID = $_SESSION["custo_ID"];
+	
+						update_customer_by_id($firstname, $lastname, $address, $city, $state, $postalcode, $countrycode, $phone, $email, $password, $customerID);
+	
+						// echo "<p>Updated</p>";
+						// echo "<p>$firstname</p>";
+						// echo "<p>$lastname</p>";
+						// echo "<p>$address</p>";
+						// echo "<p>$city</p>";
+						// echo "<p>$state</p>";
+						// echo "<p>$postalcode</p>";
+						// echo "<p>$countrycode</p>";
+						// echo "<p>$phone</p>";
+						// echo "<p>$email</p>";
+						// echo "<p>$password</p>";
+						// echo "<p>$customerID</p>";
+					}
+					catch (Exception $e) {
+						echo 'Caught exception: ',  $e->getMessage(), "\n";
+					}
+				?>
+			<?php endif; ?>
+
+			<a href="index.php">Search Customers</a>
+		</main>
+	</body>
 </html>
 
 <?php include '../view/footer.php'; ?>

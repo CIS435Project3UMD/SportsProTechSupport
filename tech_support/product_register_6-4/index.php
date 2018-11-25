@@ -1,5 +1,24 @@
-<?php
-	// The Customer Login page on page 12
+<?php include '../view/header.php'; ?>
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<!-- <title>Page Title</title> -->
+	<link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
 
-	// Should have a link to home and a link to product_registration.php in this directory
-?>
+</head>
+<body>
+	<main>
+		<h3>Customer Login</h3>
+
+		<p>You must login before you can register a product</p>
+
+		<form action="product_registration.php" method="post">
+			<label for="loginEmail">Email: </label>
+			<input type="text" name="loginEmail">
+			<input type="submit" value="Login">
+		</form>
+	</main>
+</body>
+</html>
+<?php include '../view/footer.php'; ?>
