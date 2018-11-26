@@ -14,7 +14,7 @@
     <p>Sports management software for the sports enthusiast</p>
     <nav>
         <ul>
-            <li><a href="http://localhost/SportsProTechSupport-Omari/tech_support/index.php">Home</a></li>
+            <li><a href="http://localhost/project_starts/tech_support/index.php">Home</a></li>
         </ul>
     </nav>
 </header>
