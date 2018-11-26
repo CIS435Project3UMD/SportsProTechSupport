@@ -45,10 +45,11 @@ $records = fetchAll($db);
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" media="screen" href="../main.css"/>
-        <h1>Product List</h1>
     </head>
 
     <body>
+    <main>
+    <h1>Product List</h1>
     <table>
         <tr>
             <th>Code</th>
@@ -57,26 +58,23 @@ $records = fetchAll($db);
             <th>Release Date</th>
             <th></th>
         </tr>
-        <?php
-
-
-
-        foreach($records as $record): ?>
+        <?php foreach($records as $record): ?>
             <tr>
                 <td><?php echo $record->productCode; ?></td>
                 <td><?php echo $record->name; ?></td>
                 <td><?php echo $record->version; ?></td>
                 <td><?php echo $record->releaseDate; ?></td>
-
                 <td>
+                <form>
                     <a href="delete_product.php?productCode=<?php echo $record->productCode;?>">Delete</a>
+                </form>
                 </td>
             </tr>
         <?php endforeach;
         ?>
     </table>
-<p><a href="product_add.php">Add product</a></p>
-
+    <p><a href="product_add.php">Add product</a></p>
+    </main>
     </body>
 
     </html>

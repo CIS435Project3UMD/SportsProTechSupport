@@ -45,10 +45,11 @@ $records = fetchAll($db);
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" media="screen" href="../main.css"/>
-        <h1>Technician List</h1>
     </head>
 
     <body>
+    <main>
+    <h1>Technician List</h1>
     <table>
 
             <th>First Name</th>
@@ -79,7 +80,7 @@ $records = fetchAll($db);
         ?>
     </table>
     <p><a href="technician_add.php">Add technician</a></p>
-
+    </main>
     </body>
 
     </html>

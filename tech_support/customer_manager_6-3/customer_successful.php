@@ -30,18 +30,18 @@
 	
 						update_customer_by_id($firstname, $lastname, $address, $city, $state, $postalcode, $countrycode, $phone, $email, $password, $customerID);
 	
-						echo "<p>Updated</p>";
-						echo "<p>$firstname</p>";
-						echo "<p>$lastname</p>";
-						echo "<p>$address</p>";
-						echo "<p>$city</p>";
-						echo "<p>$state</p>";
-						echo "<p>$postalcode</p>";
-						echo "<p>$countrycode</p>";
-						echo "<p>$phone</p>";
-						echo "<p>$email</p>";
-						echo "<p>$password</p>";
-						echo "<p>$customerID</p>";
+						// echo "<p>Updated</p>";
+						// echo "<p>$firstname</p>";
+						// echo "<p>$lastname</p>";
+						// echo "<p>$address</p>";
+						// echo "<p>$city</p>";
+						// echo "<p>$state</p>";
+						// echo "<p>$postalcode</p>";
+						// echo "<p>$countrycode</p>";
+						// echo "<p>$phone</p>";
+						// echo "<p>$email</p>";
+						// echo "<p>$password</p>";
+						// echo "<p>$customerID</p>";
 					}
 					catch (Exception $e) {
 						echo 'Caught exception: ',  $e->getMessage(), "\n";

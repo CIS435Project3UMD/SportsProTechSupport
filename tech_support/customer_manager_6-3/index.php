@@ -25,19 +25,8 @@
 	
 			$action = filter_input(INPUT_POST, 'lastNameSearched');
 	
-			// if($action == NULL) {
-			// 	$action = filter_input(INPUT_GET, 'lastNameSearched');
-			// 	if($action == NULL) {
-			// 		$action = $_POST['lastNameSearched'];
-			// 	}
-			// }
-	
 			if($action == $_POST['lastNameSearched']) {
 				$customerLastName = filter_input(INPUT_POST, 'lastNameSearched');
-
-				// if($customerLastName == NULL || $customerLastName == FALSE) {
-				// 	$customerLastName = 'Smith';
-				// }
 
 				$customerList = get_customers_by_lastName($customerLastName);
 				include('customer_list.php');
@@ -46,8 +35,6 @@
 		catch (Exception $e) {
 			echo 'Caught exception: ',  $e->getMessage(), "\n";
 		}
-
-
 	}
 ?>
 <?php include '../view/footer.php'; ?>

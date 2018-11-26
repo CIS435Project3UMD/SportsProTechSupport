@@ -1,22 +1,33 @@
 <?php include "../view/header.php" ?>
 
 
-    <!DOCTYPE>
+    <!DOCTYPE html>
     <html>
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" media="screen" href="../main.css"/>
-        <h1>Add Product</h1>
     </head>
     <body>
-    <form action="itemAdder.php" method="post">
-        Name: <input type="text" name="name"><br>
-        Product Code: <input type="text" name="productCode"><br>
-        Version: <input type="text" name="version"><br>
-        Release Date: <input type="text" name="releaseDate"> yyyy--mm-dd<br>
+    <main>
+    <h1>Add Product</h1>
+    <form id="aligned" action="itemAdder.php" method="post">
+        <label for="name">Name: </label>
+        <input type="text" name="name"><br>
+
+        <label for="productCode">Product Code: </label>
+        <input type="text" name="productCode"><br>
+
+        <label for="countryCodeUpdated">Version: </label>
+        <input type="text" name="version"><br>
+
+        <label for="releaseDate">Release Date: </label>
+        <input type="text" name="releaseDate">Use 'yyyy-mm-dd' format<br>
+
+        <label for="Add Product"></label>
         <input type="submit" name="Add Product" value="Add Product">
     </form>
-    <p><a href="http://localhost/SportsProTechSupport-master/tech_support/product_manager_6-1/">View Products</a></p>
+    <p><a href="index.php">View Products</a></p>
+    </main>
     </body>
 
     </html>
