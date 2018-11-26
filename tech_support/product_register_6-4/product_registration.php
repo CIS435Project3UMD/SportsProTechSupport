@@ -45,7 +45,7 @@
 			</div>
 			<div id="aligned">
 				<label for="register"></label>
-				<input name="register" type="submit" value="Register Product">
+				<input name="register" type="submit" value="Register Product"><br>
 			</div>
 		</form>
 	</main>
